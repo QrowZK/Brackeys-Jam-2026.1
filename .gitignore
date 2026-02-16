@@ -68,3 +68,4 @@ UserSettings/*
 Assets/Ignored
 
 .vscode/
+**/*.slnx
