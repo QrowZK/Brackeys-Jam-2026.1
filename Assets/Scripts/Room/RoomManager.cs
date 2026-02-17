@@ -24,6 +24,8 @@ public sealed class RoomManager : MonoBehaviour
 
     public Transform playerRoot;
     public MockInventory inventory;
+    
+    [SerializeField] private RoomTransitionController transition;
 
     public event Action<RoomDefinition> OnRoomLoading;
     public event Action<Room> OnRoomLoaded;
@@ -94,12 +96,24 @@ public sealed class RoomManager : MonoBehaviour
         var def = rooms[index];
         OnRoomLoading?.Invoke(def);
 
-        UnloadCurrent();
-        Spawn(def, index, spawnName);
+        if (transition != null)
+        {
+            yield return transition.RunTransition(() =>
+            {
+                UnloadCurrent();
+                Spawn(def, index, spawnName);
+            });
+        }
+        else
+        {
+            UnloadCurrent();
+            Spawn(def, index, spawnName);
+            yield return null;
+        }
 
-        yield return null;
         busy = false;
     }
+
 
     private void Spawn(RoomDefinition def, int index, string spawnName)
     {
@@ -169,6 +183,10 @@ public sealed class RoomManager : MonoBehaviour
     private void Update()
     {
         if (Keyboard.current.jKey.wasPressedThisFrame)
+        {
+            LoadRoomByIndex(--CurrentIndex);
+        }
+        if (Keyboard.current.kKey.wasPressedThisFrame)
         {
             LoadRoomByIndex(++CurrentIndex);
         }

@@ -499,7 +499,7 @@ internal static class RoomPrefabBuilder
             return existing;
         }
 
-        var shader = Shader.Find("Universal Render Pipeline/Lit");
+        var shader = Shader.Find("Custom/URP/ToonDitherOutline");
         var mat = new Material(shader);
         mat.name = name;
         mat.color = color;

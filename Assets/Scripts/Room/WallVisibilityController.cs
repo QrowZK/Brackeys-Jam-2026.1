@@ -7,27 +7,47 @@ public sealed class WallVisibilityController : MonoBehaviour
     [SerializeField] private RoomManager roomManager;
     [SerializeField] private Camera insideCamera;
 
-    [Header("Dot Sensor")]
-    [SerializeField] private float facingThreshold = 0.05f;
+    [Header("Mode")]
+    [SerializeField] private ViewMode mode = ViewMode.Inside;
 
-    [Header("What to toggle")]
-    [SerializeField] private bool toggleWallRenderers = true;
-    [SerializeField] private bool toggleWallChildren = true;
-    [SerializeField] private bool excludeWallObjectFromChildrenToggle = true;
+    [Header("Continuous Fade (Inside)")]
+    [Tooltip("Dot at or below this is fully hidden.")]
+    [SerializeField] private float hideDot = -0.10f;
 
-    private readonly List<Renderer> _rendererCache = new List<Renderer>(64);
+    [Tooltip("Dot at or above this is fully visible.")]
+    [SerializeField] private float showDot = 0.35f;
 
-    private ViewMode _mode = ViewMode.Inside;
-    private bool _rotationInProgress;
-    private bool _refreshQueued;
+    [Tooltip("If true, apply SmoothStep to the fade curve.")]
+    [SerializeField] private bool smoothFadeCurve = true;
+
+    [Header("Stability")]
+    [Tooltip("How quickly the dot filter reacts. Higher reacts faster. 10 to 25 is typical.")]
+    [SerializeField] private float dotFilterSharpness = 18f;
+
+    [Tooltip("Ignore tiny dot changes to prevent jitter. 0.01 to 0.03 is typical.")]
+    [SerializeField] private float dotDeadzone = 0.015f;
+
+    [Tooltip("Do not send fade updates unless the target changes by at least this amount.")]
+    [SerializeField] private float minTargetChange = 0.02f;
+
+    [Header("Inspect Visibility")]
+    [Tooltip("In Inspect mode, show exterior and hide interior.")]
+    [SerializeField] private bool inspectShowsExteriorOnly = true;
+
+    private struct WallState
+    {
+        public WallVisual visual;
+        public float filteredDot;
+        public float lastSentFade;
+        public bool initialized;
+    }
+
+    private readonly Dictionary<Wall, WallState> _states = new Dictionary<Wall, WallState>(32);
 
     private void OnEnable()
     {
         CameraModeController.OnInspectEntered += OnInspectEntered;
         CameraModeController.OnInspectExited += OnInspectExited;
-
-        CubeRotationController.OnRotationStarted += OnRotationStarted;
-        CubeRotationController.OnRotationFinished += OnRotationFinished;
 
         if (roomManager != null)
             roomManager.OnRoomLoaded += OnRoomLoaded;
@@ -38,137 +58,155 @@ public sealed class WallVisibilityController : MonoBehaviour
         CameraModeController.OnInspectEntered -= OnInspectEntered;
         CameraModeController.OnInspectExited -= OnInspectExited;
 
-        CubeRotationController.OnRotationStarted -= OnRotationStarted;
-        CubeRotationController.OnRotationFinished -= OnRotationFinished;
-
         if (roomManager != null)
             roomManager.OnRoomLoaded -= OnRoomLoaded;
     }
 
-    private void OnInspectEntered()
-    {
-        _mode = ViewMode.Inspect;
-        ApplyOutsideVisibility();
-    }
-
-    private void OnInspectExited()
-    {
-        _mode = ViewMode.Inside;
-        QueueOrRefreshNow();
-    }
-
-    private void OnRoomLoaded(Room _)
-    {
-        QueueOrRefreshNow();
-    }
-
-    private void OnRotationStarted()
-    {
-        _rotationInProgress = true;
-    }
-
-    private void OnRotationFinished()
-    {
-        _rotationInProgress = false;
-
-        if (_refreshQueued)
-        {
-            _refreshQueued = false;
-            RefreshNow();
-        }
-        else
-        {
-            RefreshNow();
-        }
-    }
-
-    private void QueueOrRefreshNow()
-    {
-        if (_mode == ViewMode.Inspect) return;
-
-        if (_rotationInProgress)
-        {
-            _refreshQueued = true;
-            return;
-        }
-
-        RefreshNow();
-    }
-
-    private void ApplyOutsideVisibility()
+    private void Update()
     {
         var room = roomManager != null ? roomManager.CurrentRoom : null;
         if (room == null || room.AllWalls == null) return;
 
-        foreach (var wall in room.AllWalls)
+        if (mode == ViewMode.Inspect)
+            ApplyInspect(room);
+        else
+            ApplyInside(room);
+    }
+
+    private void OnInspectEntered()
+    {
+        mode = ViewMode.Inspect;
+        ApplyNow();
+    }
+
+    private void OnInspectExited()
+    {
+        mode = ViewMode.Inside;
+        ApplyNow();
+    }
+
+    private void OnRoomLoaded(Room _)
+    {
+        _states.Clear();
+        ApplyNow();
+    }
+
+    private void ApplyNow()
+    {
+        var room = roomManager != null ? roomManager.CurrentRoom : null;
+        if (room == null || room.AllWalls == null) return;
+
+        if (mode == ViewMode.Inspect) ApplyInspect(room);
+        else ApplyInside(room);
+    }
+
+    private void ApplyInspect(Room room)
+    {
+        for (int i = 0; i < room.AllWalls.Count; i++)
         {
-            if (wall == null) continue;
-            SetWallAndChildrenVisible(wall, !wall.isInterior);
+            var wall = room.AllWalls[i];
+            if (!wall) continue;
+
+            bool visible = inspectShowsExteriorOnly ? !wall.isInterior : true;
+            SetWallFade(wall, visible ? 1f : 0f, bypassThresholds: true);
         }
     }
 
-    private void RefreshNow()
+    private void ApplyInside(Room room)
     {
-        if (_mode == ViewMode.Inspect) return;
-
-        var room = roomManager != null ? roomManager.CurrentRoom : null;
-        if (room == null || room.AllWalls == null || insideCamera == null) return;
+        if (insideCamera == null) return;
 
         Vector3 camPos = insideCamera.transform.position;
 
-        foreach (var w in room.AllWalls)
-        {
-            if (w == null) continue;
+        // Exponential smoothing factor for dot
+        float k = 1f - Mathf.Exp(-Mathf.Max(0.01f, dotFilterSharpness) * Time.deltaTime);
 
-            if (!w.isInterior)
+        for (int i = 0; i < room.AllWalls.Count; i++)
+        {
+            var wall = room.AllWalls[i];
+            if (!wall) continue;
+
+            // Keep exterior hidden in inside mode
+            if (!wall.isInterior)
             {
-                // Exterior hidden in inside mode (matches your existing logic).
-                SetWallAndChildrenVisible(w, false);
+                SetWallFade(wall, 0f, bypassThresholds: true);
                 continue;
             }
 
-            Transform t = w.transform;
+            Transform t = wall.transform;
             Vector3 wallNormal = -t.forward;
 
             Vector3 toCam = camPos - t.position;
             float len = toCam.magnitude;
             toCam = (len > 0.0001f) ? (toCam / len) : Vector3.forward;
 
-            bool facesCamera = Vector3.Dot(wallNormal, toCam) > facingThreshold;
-            SetWallAndChildrenVisible(w, facesCamera);
+            float rawDot = Mathf.Clamp(Vector3.Dot(wallNormal, toCam), -1f, 1f);
+
+            // Get or init state
+            if (!_states.TryGetValue(wall, out var st) || st.visual == null)
+            {
+                st = new WallState
+                {
+                    visual = wall.GetComponentInChildren<WallVisual>(true),
+                    filteredDot = rawDot,
+                    lastSentFade = -999f,
+                    initialized = true
+                };
+            }
+
+            if (st.visual == null)
+            {
+                _states[wall] = st;
+                continue;
+            }
+
+            // Deadzone on dot to reduce micro jitter
+            float deltaDot = rawDot - st.filteredDot;
+            if (Mathf.Abs(deltaDot) < dotDeadzone)
+                rawDot = st.filteredDot;
+
+            // Filtered dot
+            st.filteredDot = Mathf.Lerp(st.filteredDot, rawDot, k);
+
+            // Dot -> fade
+            float fade01 = Mathf.InverseLerp(hideDot, showDot, st.filteredDot);
+            if (smoothFadeCurve) fade01 = Mathf.SmoothStep(0f, 1f, fade01);
+
+            // Only send if meaningfully changed
+            if (Mathf.Abs(fade01 - st.lastSentFade) >= minTargetChange || st.lastSentFade < -10f)
+            {
+                st.visual.SetFadeTarget(fade01);
+                st.lastSentFade = fade01;
+            }
+
+            _states[wall] = st;
         }
     }
 
-    private void SetWallAndChildrenVisible(Wall wall, bool visible)
+    private void SetWallFade(Wall wall, float fade01, bool bypassThresholds)
     {
-        if (wall == null) return;
+        if (!wall) return;
 
-        if (toggleWallRenderers)
-            SetRenderersVisible(wall.gameObject, visible, excludeRoot: false);
-
-        if (toggleWallChildren)
-            SetRenderersVisible(wall.gameObject, visible, excludeRoot: excludeWallObjectFromChildrenToggle);
-    }
-
-    private void SetRenderersVisible(GameObject root, bool visible, bool excludeRoot)
-    {
-        if (root == null) return;
-
-        _rendererCache.Clear();
-        root.GetComponentsInChildren(true, _rendererCache);
-
-        Transform rootT = root.transform;
-
-        for (int i = 0; i < _rendererCache.Count; i++)
+        if (!_states.TryGetValue(wall, out var st) || st.visual == null)
         {
-            var r = _rendererCache[i];
-            if (r == null) continue;
-
-            if (excludeRoot && r.transform == rootT) continue;
-
-            r.enabled = visible;
+            st = new WallState
+            {
+                visual = wall.GetComponentInChildren<WallVisual>(true),
+                filteredDot = 0f,
+                lastSentFade = -999f,
+                initialized = true
+            };
         }
 
-        _rendererCache.Clear();
+        if (st.visual != null)
+        {
+            if (bypassThresholds || Mathf.Abs(fade01 - st.lastSentFade) >= minTargetChange || st.lastSentFade < -10f)
+            {
+                st.visual.SetFadeTarget(fade01);
+                st.lastSentFade = fade01;
+            }
+        }
+
+        _states[wall] = st;
     }
 }

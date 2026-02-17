@@ -2,11 +2,13 @@ using UnityEngine;
 
 public static class FloorFaceResolver
 {
+    //Might just be useless at this point lol
+    
     public static FaceName GetFloorFace(Transform cubeRoot)
     {
         if (cubeRoot == null) return FaceName.Bottom;
 
-        // World down expressed in cube local space
+
         Vector3 localDown = cubeRoot.InverseTransformDirection(Vector3.down);
 
         // Pick the dominant axis

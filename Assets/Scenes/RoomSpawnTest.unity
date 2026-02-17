@@ -151,10 +151,13 @@ MonoBehaviour:
   roomManager: {fileID: 1720854992}
   insideCamera: {fileID: 908280628}
   mode: 0
-  facingThreshold: 0.05
-  toggleWallRenderers: 1
-  toggleWallChildren: 1
-  excludeWallObjectFromChildrenToggle: 1
+  hideDot: -0.1
+  showDot: 0.35
+  smoothFadeCurve: 1
+  dotFilterSharpness: 18
+  dotDeadzone: 0.015
+  minTargetChange: 0.02
+  inspectShowsExteriorOnly: 1
 --- !u!4 &19907734
 Transform:
   m_ObjectHideFlags: 0
@@ -1143,9 +1146,10 @@ MonoBehaviour:
   mouseBoost: 1.35
   invertX: 0
   invertY: 0
+  keyboardDegreesPerSecond: 90
   snapIncrement: 90
   snapTime: 0.12
-  keyboardDegreesPerSecond: 90
+  keySnapDelay: 0.08
   stepDegrees: 90
   stepRepeatDelay: 0.18
   stepLerpTime: 0.1
@@ -1598,6 +1602,7 @@ MonoBehaviour:
   roomContainer: {fileID: 1865756517}
   playerRoot: {fileID: 341981048}
   inventory: {fileID: 341981050}
+  transition: {fileID: 763619266}
 --- !u!4 &1720854993
 Transform:
   m_ObjectHideFlags: 0

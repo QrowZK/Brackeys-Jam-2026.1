@@ -1,11 +1,12 @@
 using UnityEngine;
 
+//Might be useless for now
 public sealed class RoomRotationAndFloorBridge : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private RoomManager roomManager;
 
-    [Tooltip("This should be the same transform being rotated by CubeRotationController. Usually RoomManager.roomContainer.")]
+    [Tooltip("This should be the same transform being rotated by CubeRotationController")]
     [SerializeField] private Transform cubeRoot;
 
     private void OnEnable()
@@ -54,7 +55,6 @@ public sealed class RoomRotationAndFloorBridge : MonoBehaviour
 
         if (cubeRoot == null)
         {
-            // Best guess, use room root if you did not assign it.
             cubeRoot = room.transform;
         }
 
