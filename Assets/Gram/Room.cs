@@ -1,37 +1,39 @@
 using System.Collections;
 using UnityEngine;
 
-public class Room : MonoBehaviour
+namespace Gram
 {
-    [SerializeField]
-    private TMPro.TextMeshProUGUI gravityText;
-
-    public float rotateDuration = 0.25f;
-    private bool isRotating;
-
-    private Vector3 gravity = new Vector3(0, -1, 0);
-    public Vector3 Gravity
+    public class Room : MonoBehaviour
     {
-        get => gravity;
-        set
+        [SerializeField]
+        private TMPro.TextMeshProUGUI gravityText;
+
+        public float rotateDuration = 0.25f;
+        private bool isRotating;
+
+        private Vector3 gravity = new Vector3(0, -1, 0);
+        public Vector3 Gravity
         {
-            if (value == Vector3.zero)
-                return;
+            get => gravity;
+            set
+            {
+                if (value == Vector3.zero)
+                    return;
 
-            gravity = value.normalized;
+                gravity = value.normalized;
 
-            Physics.gravity = gravity * gravityStrength;
+                Physics.gravity = gravity * gravityStrength;
 
-            if (gravityText == null) return;
+                if (gravityText == null) return;
 
-            gravityText.text = $"Gravity {gravity:F0}";
+                gravityText.text = $"Gravity {gravity:F0}";
+            }
         }
-    }
-    public float gravityStrength = 9.8f;
-    public bool changeGravity = false;
+        public float gravityStrength = 9.8f;
+        public bool changeGravity = false;
 
-    readonly private Vector3[] axes =
-    {
+        readonly private Vector3[] axes =
+        {
         Vector3.right,
         Vector3.left,
         Vector3.up,
@@ -40,40 +42,41 @@ public class Room : MonoBehaviour
         Vector3.back
     };
 
-    public void RotateBy(int index)
-    {
-        if (isRotating) return;
-
-        Quaternion delta = Quaternion.AngleAxis(90, axes[index]);
-        Quaternion targetRotation = delta * transform.rotation;
-
-        if (changeGravity)
+        public void RotateBy(int index)
         {
-            Gravity = delta * Gravity;
+            if (isRotating) return;
+
+            Quaternion delta = Quaternion.AngleAxis(90, axes[index]);
+            Quaternion targetRotation = delta * transform.rotation;
+
+            if (changeGravity)
+            {
+                Gravity = delta * Gravity;
+            }
+
+            StartCoroutine(RotateTo(targetRotation));
         }
 
-        StartCoroutine(RotateTo(targetRotation));
-    }
-
-    IEnumerator RotateTo(Quaternion target)
-    {
-        isRotating = true;
-
-        Quaternion start = transform.rotation;
-        float time = 0f;
-
-        while (time < rotateDuration)
+        IEnumerator RotateTo(Quaternion target)
         {
-            float t = time / rotateDuration;
-            t = Mathf.SmoothStep(0f, 1f, t);
+            isRotating = true;
 
-            transform.rotation = Quaternion.Slerp(start, target, t);
+            Quaternion start = transform.rotation;
+            float time = 0f;
 
-            time += Time.deltaTime;
-            yield return null;
+            while (time < rotateDuration)
+            {
+                float t = time / rotateDuration;
+                t = Mathf.SmoothStep(0f, 1f, t);
+
+                transform.rotation = Quaternion.Slerp(start, target, t);
+
+                time += Time.deltaTime;
+                yield return null;
+            }
+
+            transform.rotation = target;
+            isRotating = false;
         }
-
-        transform.rotation = target;
-        isRotating = false;
     }
 }
