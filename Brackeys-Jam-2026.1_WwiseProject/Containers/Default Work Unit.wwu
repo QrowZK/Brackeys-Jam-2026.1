@@ -39,6 +39,72 @@
 						<ActiveSource Name="Test Dreamy room" ID="{C80E4F86-D8DA-4EED-98BB-7BE60D16B45F}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
+				<Sound Name="Boss Battle" ID="{816074CF-9F85-4C38-8DD6-60331EF23E7B}" ShortID="1048390144">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{E80DA353-22C6-4728-9289-36443E3DC10E}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B0565957-3267-45E1-A441-C7AB3399B15C}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Boss Battle" ID="{097F2FE5-EB76-4F15-B071-18766C314F29}">
+							<Language>SFX</Language>
+							<AudioFile>Boss Battle.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="468473696"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Boss Battle" ID="{097F2FE5-EB76-4F15-B071-18766C314F29}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="Exploration Theme 1" ID="{046AE7C2-7CBF-48FF-9136-9B256C3ACD78}" ShortID="151607658">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{E80DA353-22C6-4728-9289-36443E3DC10E}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B0565957-3267-45E1-A441-C7AB3399B15C}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Exploration Theme 1" ID="{66FC9D8B-A2F3-4E96-A9FB-FFF3E5F8B455}">
+							<Language>SFX</Language>
+							<AudioFile>Exploration Theme 1.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="378733911"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Exploration Theme 1" ID="{66FC9D8B-A2F3-4E96-A9FB-FFF3E5F8B455}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="Exploration Theme 2" ID="{51B840F8-EB13-44A3-B169-294C08BE0289}" ShortID="658404885">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{E80DA353-22C6-4728-9289-36443E3DC10E}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B0565957-3267-45E1-A441-C7AB3399B15C}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Exploration Theme 2" ID="{4049815D-FCDA-4E5E-AF4E-5AC643DE6AC6}">
+							<Language>SFX</Language>
+							<AudioFile>Exploration Theme 2.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="816227678"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Exploration Theme 2" ID="{4049815D-FCDA-4E5E-AF4E-5AC643DE6AC6}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
 			</ChildrenList>
 		</WorkUnit>
 	</Containers>
