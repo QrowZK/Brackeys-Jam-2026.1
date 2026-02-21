@@ -6,7 +6,11 @@ namespace Winter.Player
     {
         public void AnimEvent_Step()
         {
-            PlayerController.Instance.OnStepSFX?.Invoke();
+            var controller = PlayerController.Instance;
+            if (controller != null)
+            {
+                controller.OnStepSFX?.Invoke();
+            }
 
         }
     }
