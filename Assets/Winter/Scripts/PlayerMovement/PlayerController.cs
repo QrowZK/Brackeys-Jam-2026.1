@@ -147,8 +147,8 @@ namespace Winter.Player
         {
             CheckIfGrounded();
 
-            var garvitationalForce = worldSpaceGravityVector * 9.8f;
-            rb.AddForce(garvitationalForce, ForceMode.Acceleration);
+            var gravitationalForce = worldSpaceGravityVector * 9.8f;
+            rb.AddForce(gravitationalForce, ForceMode.Acceleration);
 
             var targetVel = worldSpaceMoveDirection.normalized * walkSpeed;
 
