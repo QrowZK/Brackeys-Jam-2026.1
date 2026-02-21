@@ -126,9 +126,11 @@ namespace Winter.Player
             else
             {
                 if (joint)
-                    Destroy(joint);
-
-                joint = null;
+                {
+                    var oldJoint = joint;
+                    joint = null;
+                    Destroy(oldJoint);
+                }
                 IsPushingPulling = false;
             }
         }
