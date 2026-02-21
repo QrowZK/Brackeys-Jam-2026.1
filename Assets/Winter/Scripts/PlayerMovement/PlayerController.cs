@@ -8,26 +8,30 @@ namespace Winter.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        [Header("Player Stats")]
+
+        [Header("Player Stats and Settings:")]
         public int healthPoints;
         public float walkSpeed;
         public float runSpeed;
         public float jumpHeight;
+        public bool MoveAlongWorldCoords;
+        public float GravityMagnitude = 9.8f;
 
-        [Header("Other:")]
+        [Header("Transforms:")]
         public Transform graphics;
         public Transform mainColliderTransform;
+
+        [Header("Ground Check:")]
         public LayerMask playerMask;
-        public Animator animator;
-
         public float groundCheckerOffset;
-
         public float groundCheckRadius;
 
 
-        public Vector3 worldSpaceGravityVector;
-        public Rigidbody rb;
+        private Animator animator;
+        private Rigidbody rb;
 
+
+        [HideInInspector] public Vector3 worldSpaceGravityVector;
         public Vector3 worldSpaceMoveDirection { get; private set; }
 
         private bool isJumping;
@@ -53,9 +57,11 @@ namespace Winter.Player
         public Action OnLandSFX;
 
 
-        public bool IsPushingPulling;
+        private bool IsPushingPulling;
+
+        [Header("Push Pull Settings:")]
         public float pushPullSenseDistance;
-        public HingeJoint joint;
+        private HingeJoint joint;
 
 
 
@@ -73,6 +79,8 @@ namespace Winter.Player
 
         void Start()
         {
+            rb = GetComponent<Rigidbody>();
+            animator = GetComponentInChildren<Animator>();
 
             nonAllocColQueryBuffer = new Collider[2];
             rb = GetComponent<Rigidbody>();
@@ -89,8 +97,8 @@ namespace Winter.Player
 
             CheckPushPull();
 
-            var alongCam = Camera.main.transform.rotation * new Vector3(InputManager.Instance.MoveRaw.x, 0, InputManager.Instance.MoveRaw.y);
-            worldSpaceMoveDirection = Vector3.ProjectOnPlane(alongCam, mainColliderTransform.up).normalized;
+            var alongRefCoords = (MoveAlongWorldCoords ? Quaternion.identity : Camera.main.transform.rotation) * new Vector3(InputManager.Instance.MoveRaw.x, 0, InputManager.Instance.MoveRaw.y);
+            worldSpaceMoveDirection = Vector3.ProjectOnPlane(alongRefCoords, mainColliderTransform.up).normalized;
             //worldSpaceMoveDirection = transform.rotation * alongCam;
 
             Debug.DrawLine(transform.position, transform.position + worldSpaceMoveDirection.normalized * 10f, Color.red);
@@ -155,7 +163,7 @@ namespace Winter.Player
         {
             CheckIfGrounded();
 
-            var gravitationalForce = worldSpaceGravityVector * 9.8f;
+            var gravitationalForce = worldSpaceGravityVector * GravityMagnitude;
             rb.AddForce(gravitationalForce, ForceMode.Acceleration);
 
             var targetVel = worldSpaceMoveDirection.normalized * walkSpeed;
@@ -189,6 +197,11 @@ namespace Winter.Player
                 timerOn = true;
             }
 
+        }
+
+        public void SetGravityMagnitude(float val)
+        {
+            GravityMagnitude = val;
         }
 
 
