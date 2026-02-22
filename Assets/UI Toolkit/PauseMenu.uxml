@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/StyleSheets/PauseMenu.uss?fileID=7433441132597879392&amp;guid=65d31c46a18110848a2f980526412d67&amp;type=3#PauseMenu"/>
+    <ui:VisualElement name="pause-menu" style="flex-grow: initial; padding-top: 10%; padding-right: 10%; padding-bottom: 10%; padding-left: 10%; background-color: rgba(156, 255, 0, 0.78); border-left-color: rgb(99, 56, 255); border-right-color: rgb(99, 56, 255); border-top-color: rgb(99, 56, 255); border-bottom-color: rgb(99, 56, 255); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;">
+        <ui:Button text="Resume Game" name="resume" class="pause-menu-button button-selected" style="opacity: 1; background-color: rgba(188, 188, 188, 0);"/>
+        <ui:Button text="Settings" name="settings" class="pause-menu-button"/>
+        <ui:Button text="Return to Title" name="return-to-title" class="pause-menu-button"/>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,18 @@
+:root {
+}
+
+.pause-menu-button {
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+.button-selected {
+    -unity-font-definition: url("project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans");
+    -unity-font-style: normal;
+    font-size: 19px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0);
+    -unity-text-outline-width: 0;
+}
