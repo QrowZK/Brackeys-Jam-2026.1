@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PlatformInfo>
-	<Platform Name="Mac" BasePlatform="Mac" Generator="2025.1.5.9095"/>
+	<Platform Name="Mac" BasePlatform="Mac" Generator="2025.1.4.9062"/>
 	<RootPaths>
 		<ProjectRoot>../..</ProjectRoot>
 		<SourceFilesRoot>../../.cache</SourceFilesRoot>
@@ -29,5 +29,5 @@
 		<PrintObjectPath>true</PrintObjectPath>
 		<PrintObjectColor>true</PrintObjectColor>
 	</Settings>
-	<FileHash>{A5B82917-21AA-5CFF-B77E-7032A48F409A}</FileHash>
+	<FileHash>{24BCABA9-74DF-ECBE-4E9E-D15BF955D946}</FileHash>
 </PlatformInfo>

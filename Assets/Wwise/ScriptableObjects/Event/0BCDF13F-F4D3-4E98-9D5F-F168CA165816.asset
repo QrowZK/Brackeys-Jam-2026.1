@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a886772f83054e69809c9dfca8910a2, type: 3}
+  m_Name: 0BCDF13F-F4D3-4E98-9D5F-F168CA165816
+  m_EditorClassIdentifier: AK.Wwise.Unity.API.WwiseTypes::WwiseEventReference
+  objectName: Play_Main_Menu_Theme
+  id: 193626927
+  guid: 0BCDF13F-F4D3-4E98-9D5F-F168CA165816
+  IsInUserDefinedSoundBank: 1

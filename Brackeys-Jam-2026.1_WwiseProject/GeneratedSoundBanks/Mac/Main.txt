@@ -1,6 +1,29 @@
 Event	ID	Name			Wwise Object Path	Notes
-	3568813383	Play_Main_theme			\Default Work Unit\Play_Main_theme	
+	193626927	Play_Main_Menu_Theme			\Default Work Unit\Play_Main_Menu_Theme	
+	481307823	Play_SFX_Jump_1_0			\Default Work Unit\Play_SFX_Jump_1_0	
+	3282643635	Play__Dreamy_room			\Default Work Unit\Play__Dreamy_room	
+	3854155799	Play_Footsteps			\Default Work Unit\Play_Footsteps	
+
+Switch Group	ID	Name			Wwise Object Path	Notes
+	4064446173	Surface_Type			\Default Work Unit\Surface_Type	
+
+Switch	ID	Name	Switch Group			Notes
+	841620460	Concrete	Surface_Type			
+	2058049674	Wood	Surface_Type			
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	529720213	Main_theme	.cache\DB\{DB97463E-69AB-DB41-04DA-7A964CE122DC}.wem		\Containers\Default Work Unit\Main_theme		6735420
+	7809449	Wood_footstep__4	.cache\CF\{CF3EE968-DA7A-39E5-19D0-C4FD81B574F7}.wem		\Containers\Default Work Unit\Footsteps_Switch\Wood\Wood_footstep__4		47776
+	11637584	Concrete_Footstep_3	.cache\1A\{1A7E2232-BE50-7442-A236-ECFFAE53BA4D}.wem		\Containers\Default Work Unit\Footsteps_Switch\Concrete\Concrete_Footstep_3		65408
+	190468076	 Dreamy room	.cache\5A\{5A29E5A4-BEC7-9E26-9842-314210D53378}.wem		\Containers\Default Work Unit\ Dreamy room		6735372
+	226717113	Wood_footstep_5	.cache\D7\{D7EB34F1-7E02-B786-B8A0-6919A8CD3A75}.wem		\Containers\Default Work Unit\Footsteps_Switch\Wood\Wood_footstep_5		49504
+	347894863	Wood_footstep_1	.cache\90\{90A434BB-3F5D-8667-7B9B-DFDF46149CD1}.wem		\Containers\Default Work Unit\Footsteps_Switch\Wood\Wood_footstep_1		47592
+	376007201	Main Menu Theme	.cache\5A\{5A783122-2BC4-2993-7074-41EA9527CF25}.wem		\Containers\Default Work Unit\Main Menu Theme		35547528
+	457502287	Concrete_Footstep_1	.cache\45\{45AD7D96-D4E1-34B8-E7C0-24D1BAC8D312}.wem		\Containers\Default Work Unit\Footsteps_Switch\Concrete\Concrete_Footstep_1		65804
+	465568694	Wood_footstep_7	.cache\55\{55D4587B-AEB8-F6EC-B49E-E157A3DBA131}.wem		\Containers\Default Work Unit\Footsteps_Switch\Wood\Wood_footstep_7		55520
+	607026592	Wood_footstep__2	.cache\C4\{C4AEDDA7-03EF-D416-42DB-45D5FC1F9B5D}.wem		\Containers\Default Work Unit\Footsteps_Switch\Wood\Wood_footstep__2		33888
+	642688807	Wood_footstep_6	.cache\12\{1262B05F-52D8-BAF4-5F80-EEC850B90B54}.wem		\Containers\Default Work Unit\Footsteps_Switch\Wood\Wood_footstep_6		45536
+	662787839	Wood_footstep_3	.cache\33\{3326019A-45EA-F754-EC8F-B01F2DB617B2}.wem		\Containers\Default Work Unit\Footsteps_Switch\Wood\Wood_footstep_3		42464
+	940942332	SFX_Jump 1_0	.cache\4D\{4D2E7C3F-6D30-79E8-DCF4-855C08DF7DA6}.wem		\Containers\Default Work Unit\SFX_Jump 1_0		88296
+	980409628	Wood_footstep_8	.cache\80\{8004251D-E4E1-9367-2868-C8BEDE4469BD}.wem		\Containers\Default Work Unit\Footsteps_Switch\Wood\Wood_footstep_8		47072
+	999713809	Concrete_Footstep_2	.cache\97\{977EB75A-1F3A-4CB9-CDD1-B0DEC0B27FFB}.wem		\Containers\Default Work Unit\Footsteps_Switch\Concrete\Concrete_Footstep_2		76764
 

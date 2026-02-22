@@ -14,7 +14,15 @@
 			<Busses>
 				<Bus Id="2246998526" Name="Main Audio Bus" ObjectPath="\Busses\Default Work Unit\Main Audio Bus" GUID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}"/>
 			</Busses>
+			<SwitchGroups>
+				<SwitchGroup Id="4064446173" Name="Surface_Type" ObjectPath="\Switches\Default Work Unit\Surface_Type" GUID="{0D1406F1-6A55-49F8-A0E7-4C91068543E0}">
+					<Switches>
+						<Switch Id="841620460" Name="Concrete" ObjectPath="\Switches\Default Work Unit\Surface_Type\Concrete" GUID="{41313906-E866-40A2-BDF3-B9EE7D97BA7A}"/>
+						<Switch Id="2058049674" Name="Wood" ObjectPath="\Switches\Default Work Unit\Surface_Type\Wood" GUID="{F7815C08-1964-4651-BD80-16153634ADFE}"/>
+					</Switches>
+				</SwitchGroup>
+			</SwitchGroups>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{BAAAFD0D-76F9-9063-E03A-8DBB77FAC5B3}</FileHash>
+	<FileHash>{0ED0DB50-3000-7B99-A5BB-FFAAE463646A}</FileHash>
 </SoundBanksInfo>

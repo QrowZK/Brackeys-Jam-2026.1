@@ -74,3 +74,5 @@ Assets/Ignored
 *.akd
 **/Wwise/Originals/Backup/
 Wwise/GeneratedSoundBanks/Wwise_IDs.h
+Brackeys-Jam-2026.1_WwiseProject/ProfilingSession3.prof
+Brackeys-Jam-2026.1_WwiseProject/ProfilingSession2.prof

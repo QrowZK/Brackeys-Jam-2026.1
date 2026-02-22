@@ -154,11 +154,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WallVisual
   renderers:
   - {fileID: 4091267012795067857}
-  defaultFadeTime: 0.12
+  fadePropertyName: _Fade
+  fadeInSharpness: 16
+  fadeOutSharpness: 14
+  applyEpsilon: 0.005
   disableRenderersAtZero: 1
-  colorPropertyNames:
-  - _BaseColor
-  - _Color
+  disableDelay: 0.1
 --- !u!65 &7043191498186089825
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -303,11 +304,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WallVisual
   renderers:
   - {fileID: 1091577404230315304}
-  defaultFadeTime: 0.12
+  fadePropertyName: _Fade
+  fadeInSharpness: 16
+  fadeOutSharpness: 14
+  applyEpsilon: 0.005
   disableRenderersAtZero: 1
-  colorPropertyNames:
-  - _BaseColor
-  - _Color
+  disableDelay: 0.1
 --- !u!65 &6767734265136020120
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -916,11 +918,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WallVisual
   renderers:
   - {fileID: 3393480761210319087}
-  defaultFadeTime: 0.12
+  fadePropertyName: _Fade
+  fadeInSharpness: 16
+  fadeOutSharpness: 14
+  applyEpsilon: 0.005
   disableRenderersAtZero: 1
-  colorPropertyNames:
-  - _BaseColor
-  - _Color
+  disableDelay: 0.1
 --- !u!65 &1389475780933239712
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1008,7 +1011,7 @@ GameObject:
   - component: {fileID: 6605141884887308461}
   m_Layer: 0
   m_Name: Face_Bottom
-  m_TagString: Untagged
+  m_TagString: Concrete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1115,11 +1118,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WallVisual
   renderers:
   - {fileID: 7205549905519045039}
-  defaultFadeTime: 0.12
+  fadePropertyName: _Fade
+  fadeInSharpness: 16
+  fadeOutSharpness: 14
+  applyEpsilon: 0.005
   disableRenderersAtZero: 1
-  colorPropertyNames:
-  - _BaseColor
-  - _Color
+  disableDelay: 0.1
 --- !u!65 &6605141884887308461
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1634,11 +1638,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WallVisual
   renderers:
   - {fileID: 288803923321643797}
-  defaultFadeTime: 0.12
+  fadePropertyName: _Fade
+  fadeInSharpness: 16
+  fadeOutSharpness: 14
+  applyEpsilon: 0.005
   disableRenderersAtZero: 1
-  colorPropertyNames:
-  - _BaseColor
-  - _Color
+  disableDelay: 0.1
 --- !u!65 &7761558159856708247
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1918,11 +1923,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WallVisual
   renderers:
   - {fileID: 7317078535115826228}
-  defaultFadeTime: 0.12
+  fadePropertyName: _Fade
+  fadeInSharpness: 16
+  fadeOutSharpness: 14
+  applyEpsilon: 0.005
   disableRenderersAtZero: 1
-  colorPropertyNames:
-  - _BaseColor
-  - _Color
+  disableDelay: 0.1
 --- !u!65 &198258334048409730
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2358,11 +2364,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WallVisual
   renderers:
   - {fileID: 3167006061311715633}
-  defaultFadeTime: 0.12
+  fadePropertyName: _Fade
+  fadeInSharpness: 16
+  fadeOutSharpness: 14
+  applyEpsilon: 0.005
   disableRenderersAtZero: 1
-  colorPropertyNames:
-  - _BaseColor
-  - _Color
+  disableDelay: 0.1
 --- !u!65 &1718936557017499067
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2507,11 +2514,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WallVisual
   renderers:
   - {fileID: 2757189297224056708}
-  defaultFadeTime: 0.12
+  fadePropertyName: _Fade
+  fadeInSharpness: 16
+  fadeOutSharpness: 14
+  applyEpsilon: 0.005
   disableRenderersAtZero: 1
-  colorPropertyNames:
-  - _BaseColor
-  - _Color
+  disableDelay: 0.1
 --- !u!65 &5135823455345610357
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2911,11 +2919,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WallVisual
   renderers:
   - {fileID: 4421585093037374200}
-  defaultFadeTime: 0.12
+  fadePropertyName: _Fade
+  fadeInSharpness: 16
+  fadeOutSharpness: 14
+  applyEpsilon: 0.005
   disableRenderersAtZero: 1
-  colorPropertyNames:
-  - _BaseColor
-  - _Color
+  disableDelay: 0.1
 --- !u!65 &4209572094964488745
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3113,11 +3122,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WallVisual
   renderers:
   - {fileID: 3207717124642055205}
-  defaultFadeTime: 0.12
+  fadePropertyName: _Fade
+  fadeInSharpness: 16
+  fadeOutSharpness: 14
+  applyEpsilon: 0.005
   disableRenderersAtZero: 1
-  colorPropertyNames:
-  - _BaseColor
-  - _Color
+  disableDelay: 0.1
 --- !u!65 &2744142666161307685
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3262,11 +3272,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WallVisual
   renderers:
   - {fileID: 5944701714914293022}
-  defaultFadeTime: 0.12
+  fadePropertyName: _Fade
+  fadeInSharpness: 16
+  fadeOutSharpness: 14
+  applyEpsilon: 0.005
   disableRenderersAtZero: 1
-  colorPropertyNames:
-  - _BaseColor
-  - _Color
+  disableDelay: 0.1
 --- !u!65 &8744732251340257246
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3411,11 +3422,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WallVisual
   renderers:
   - {fileID: 2981393466596200513}
-  defaultFadeTime: 0.12
+  fadePropertyName: _Fade
+  fadeInSharpness: 16
+  fadeOutSharpness: 14
+  applyEpsilon: 0.005
   disableRenderersAtZero: 1
-  colorPropertyNames:
-  - _BaseColor
-  - _Color
+  disableDelay: 0.1
 --- !u!65 &4449370296566110432
 BoxCollider:
   m_ObjectHideFlags: 0
