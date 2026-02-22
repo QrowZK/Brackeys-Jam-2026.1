@@ -1,6 +1,6 @@
 Event	ID	Name			Wwise Object Path	Notes
-	3199394876	Play_arp01			\Default Work Unit\Play_arp01	
+	3568813383	Play_Main_theme			\Default Work Unit\Play_Main_theme	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	983692288	arp01	.cache\F5\{F5126CAC-6360-87F9-F7B8-753114A54282}.wem		\Containers\Default Work Unit\arp01		263548
+	529720213	Main_theme	.cache\DB\{DB97463E-69AB-DB41-04DA-7A964CE122DC}.wem		\Containers\Default Work Unit\Main_theme		6735420
 

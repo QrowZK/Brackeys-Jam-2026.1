@@ -1,6 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{70DE4147-A1BA-4636-A3EA-35B3EC2E05A1}" SchemaVersion="133">
 	<Containers>
-		<WorkUnit Name="Default Work Unit" ID="{70DE4147-A1BA-4636-A3EA-35B3EC2E05A1}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{70DE4147-A1BA-4636-A3EA-35B3EC2E05A1}" PersistMode="Standalone">
+			<ChildrenList>
+				<Sound Name="Main_theme" ID="{37B33455-C274-4A6C-A54B-257F2D155D36}" ShortID="917009330">
+					<PropertyList>
+						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-2</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{E80DA353-22C6-4728-9289-36443E3DC10E}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B0565957-3267-45E1-A441-C7AB3399B15C}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Test Dreamy room" ID="{C80E4F86-D8DA-4EED-98BB-7BE60D16B45F}">
+							<PropertyList>
+								<Property Name="FadeInDuration" Type="Real64" Value="0.659254708049966"/>
+								<Property Name="FadeOutDuration" Type="Real64" Value="0.494441031037475"/>
+								<Property Name="LoopEnd" Type="Real64" Value="34.9405010867815"/>
+								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+							</PropertyList>
+							<Language>SFX</Language>
+							<AudioFile>Test Dreamy room.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="529720213"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Test Dreamy room" ID="{C80E4F86-D8DA-4EED-98BB-7BE60D16B45F}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+			</ChildrenList>
+		</WorkUnit>
 	</Containers>
 </WwiseDocument>

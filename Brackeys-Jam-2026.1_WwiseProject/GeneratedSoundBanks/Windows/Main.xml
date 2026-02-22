@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="16" SoundBankVersion="172">
+	<SoundBanks>
+		<SoundBank Id="3161908922" Type="User" GUID="{1587989A-3285-4619-8908-D6CC4AE02205}" Language="SFX" Hash="{9650F903-F31A-F1DF-29AC-8F318F8B5E10}">
+			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
+			<ShortName>Main</ShortName>
+			<Path>Main.bnk</Path>
+			<Media>
+				<File Id="529720213" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Test Dreamy room.wav</ShortName>
+					<CachePath>DB/{DB97463E-69AB-DB41-04DA-7A964CE122DC}.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="3568813383" Name="Play_Main_theme" ObjectPath="\Events\Default Work Unit\Play_Main_theme" GUID="{11451C32-25BC-40D8-8468-D3D410DB08A4}" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="529720213"/>
+					</MediaRefs>
+				</Event>
+			</Events>
+		</SoundBank>
+	</SoundBanks>
+	<FileHash>{A5ECD39C-7273-487C-B9A4-35FE74C97F67}</FileHash>
+</SoundBanksInfo>
